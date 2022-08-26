@@ -1,7 +1,0 @@
----
- - hosts: balancer
-   roles:
-           - balancer
- - hosts: webserver
-   roles:
-           - phpinfo
