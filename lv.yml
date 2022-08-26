@@ -1,0 +1,26 @@
+---
+ - hosts: 172.31.26.140
+   tasks:
+           - debug:
+                   msg: "Device is not present"
+             when: ansible_lvm.vgs.myvg is not defined
+           - block:
+                 - lvol:
+                         vg: myvg
+                         lv: mylv
+                         size: 1500
+                   when: ansible_lvm.vgs.myvg.free_g >= "1.5g"
+                 - debug:
+                           msg: "Could not create partion of that size"
+                   when: ansible_lvm.vgs.myvgs.free_g < "1.5g"
+             rescue:
+                 - lvol:
+                         vg: myvg
+                         lv: mylv
+                         size: 800
+                   when: ansible_lvm.vgs.myvg.free_g < "1.5g"
+             always:
+                 - filesystem:
+                           fstype: ext4
+                           dev: /dev/myvg/mylv
+

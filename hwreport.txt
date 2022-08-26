@@ -1,0 +1,5 @@
+INVENTORY_HOSTNAME=hostname
+TOTAL_MEMORY=memory
+BIOS_VERSION=version
+VDA_SIZE=vdasize
+VDB_SIZE=vdbsize

@@ -1,0 +1,9 @@
+---
+ - hosts: all
+   tasks:
+           cron:
+                   name: test
+                   user: admin
+                   minute: "3"
+                   job: "logger RH294"
+                   state: present

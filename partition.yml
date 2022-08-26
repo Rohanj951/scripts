@@ -1,0 +1,34 @@
+---
+ - hosts: 172.31.26.140
+   tasks:
+           - debug:
+                   msg: "Device is not present"
+             when: ansible_devices.xvdf is not defined
+           - block:
+                 - parted:
+                           device: /dev/xvdf
+                           number: 1
+                           state: present
+                           part_end: 1500MiB
+                   when: ansible_devices.xvdf.size >= "1.5g"
+                 - debug:
+                           msg: "Could not create partion of that size"
+                   when: ansible_devices.xvdf.size < "1.5g"
+             rescue:
+                 - parted:
+                           device: /dev/xvdf
+                           number: 1
+                           state: present
+                           part_end: 800MiB
+                   when: ansible_devices.xvdf.size < "1.5g"
+
+             always:
+                 - filesystem:
+                           fstype: ext4
+                           dev: /dev/xvdf1
+
+                 - mount:
+                           path: /root/webdev
+                           src: /dev/xvdf1
+                           fstype: ext4
+                           state: present

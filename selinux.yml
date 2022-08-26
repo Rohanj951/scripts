@@ -1,0 +1,8 @@
+---
+ - hosts: all
+   vars:
+           - selinux_state: enforcing
+   roles:
+           - role: rhel-system-roles.selinux
+             become: true
+

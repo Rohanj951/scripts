@@ -1,0 +1,58 @@
+---
+ - hosts: all
+   vars:
+           - NONE=NONE
+   tasks:
+           - get_url:
+                   url: jdjdjd.google.com
+                   dest: /root/hwreport.txt
+           - replace:
+                   path: /root/hwreport.txt
+                   regexp: "{{ item.oldvalue }}"
+                   replace: "{{ item.newvalue }}"
+             loop:
+                     - oldvalue: hostname
+                       newvalue: "{{ ansible_hostname }}"
+                     - oldvalue: memory
+                       newvalue: "{{ ansible_memtotal_mb }}"
+                     - oldvalue: biosversion
+                       newvalue: "{{ ansible_bios_version }}"
+                     - oldvalue: xvdasize
+                       newvalue: "{{ ansible_devices.xvda.size }}" 
+                     - oldvalue: xvdbsize
+                       newvalue: "{{ ansible_devices.xvdb.size }}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
