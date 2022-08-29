@@ -146,7 +146,7 @@ do
 		if [[ $? == 0 ]]
 		then 
 			echo
-			echo "################################## docker install successful ###################################"
+			echo "################################ docker install successful ###################################"
 		else
 			echo "docker is not install"
 			exit 1
