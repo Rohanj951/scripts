@@ -183,7 +183,7 @@ EOF
 		echo
 
 		# configuring the CGROUP driver
-		cat << EOF | sudo tee /etc/docker/daemon.json
+		cat << EOF > /etc/docker/daemon.json
                         {
                            "exec-opts": ["native.cgroupdriver=systemd"]
                       }
