@@ -70,7 +70,7 @@ else
 	exit 1
 fi
 echo
-echo  "################ successfull update ###############"
+echo  "################ successfull update ##############"
 echo
 sleep 1
 
