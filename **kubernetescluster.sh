@@ -237,6 +237,12 @@ EOF
 		echo  " ####### docker and kubelet service is restart and enable ###"
 		sleep 2		
 		echo
+		sleep 1
+		######cni plugins in k8s documnet
+                kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+		sleep 1
+		echo "Cluster setup initiallization"
+		Kubeadm init
 		#service docker-ce
 		#sleep 1
 		#echo
